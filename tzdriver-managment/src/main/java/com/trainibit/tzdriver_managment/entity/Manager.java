@@ -8,6 +8,7 @@ import org.hibernate.annotations.ColumnDefault;
 import java.time.Instant;
 import java.util.UUID;
 
+
 @Getter
 @Setter
 @Entity
@@ -41,5 +42,11 @@ public class Manager {
 
     @Column(name = "updated", nullable = false)
     private Instant updated;
+
+    @Column(name = "password", nullable = false,length = Integer.MAX_VALUE)
+    private String password;
+
+    @Column (name = "user", nullable = false, length = Integer.MAX_VALUE)
+    private String user;
 
 }
