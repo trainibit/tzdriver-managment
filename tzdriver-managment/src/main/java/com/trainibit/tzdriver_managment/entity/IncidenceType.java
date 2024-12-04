@@ -10,8 +10,8 @@ import java.util.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "incidende_types")
-public class IncidendeType {
+@Table(name = "incidence_types")
+public class IncidenceType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -18,8 +18,8 @@ public class Incidence {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "fecha_inci", nullable = false)
-    private LocalDate fechaInci;
+    @Column(name = "incidence_date", nullable = false)
+    private LocalDate incidendeDate;
 
     @Column(name = "uuid")
     private UUID uuid;
@@ -27,7 +27,7 @@ public class Incidence {
     @ManyToOne(fetch = FetchType.LAZY)
     //columna relacionada en la base de datos
     @JoinColumn(name = "incidence_type_id")
-    private IncidendeType incidenceType;
+    private IncidenceType incidenceType;
 
     @Column(name = "created", nullable = false)
     private Instant created;
