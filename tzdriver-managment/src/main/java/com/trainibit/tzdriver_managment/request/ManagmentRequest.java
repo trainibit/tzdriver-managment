@@ -1,6 +1,9 @@
 package com.trainibit.tzdriver_managment.request;
 
-public class ManagerRequest {
+import lombok.Data;
+
+@Data
+public class ManagmentRequest {
     private String name;
     private String last_name;
     private String email;
