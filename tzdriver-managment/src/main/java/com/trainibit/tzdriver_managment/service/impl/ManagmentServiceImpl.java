@@ -2,7 +2,6 @@ package com.trainibit.tzdriver_managment.service.impl;
 
 import com.trainibit.tzdriver_managment.entity.Managment;
 import com.trainibit.tzdriver_managment.mapper.ManagmentMapper;
-import com.trainibit.tzdriver_managment.mapper.ManagmentMapper2;
 import com.trainibit.tzdriver_managment.repository.ManagmentRepository;
 import com.trainibit.tzdriver_managment.request.ManagmentRequest;
 import com.trainibit.tzdriver_managment.response.ManagmentResponse;
@@ -33,6 +32,15 @@ private ManagmentMapper managmentMapper;
         return managmentMapper.mapEntityToDto(managmentRepository.findByUuid(uuid).
                 orElseThrow(EntityNotFoundException::new));
     }
+    @Override
+    public Managment deleteById(Long id) {
+        if (managmentRepository.existsById(id)) {
+            managmentRepository.borrarByIdActive(id);
+        } else {
+            throw new EntityNotFoundException("Usuario con id" + id + " no encontrado");
+        }
+        return null;
+    }
 
     @Override
     public Managment save(ManagmentRequest managmentRequest) {
@@ -44,9 +52,6 @@ private ManagmentMapper managmentMapper;
         return null;
     }
 
-    @Override
-    public Managment deleteById(Long id) {
-        return null;
-    }
+
 }
 

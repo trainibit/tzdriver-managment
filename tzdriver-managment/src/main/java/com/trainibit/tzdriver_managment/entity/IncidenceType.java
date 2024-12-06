@@ -22,13 +22,4 @@ public class IncidenceType {
     @Column(name = "uuid", nullable = false)
     private UUID uuid;
 
-    @Column(name = "created", nullable = false)
-    private Instant created;
-
-    @Column(name = "updated", nullable = false)
-    private Instant updated;
-
-    @OneToMany(mappedBy = "incidenceType")
-    private List<Incidence> incidences = new ArrayList<>();
-
 }

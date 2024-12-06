@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 
     @MappedSuperclass
     @Data
-    public class AuditableRecord  {
+    public class AuditableRecord {
         @Column(name = "created", nullable = false, insertable = false, updatable = false)
         private Timestamp createdat;
 
@@ -18,9 +18,12 @@ import java.sql.Timestamp;
         private Timestamp updatedat;
 
         @ColumnDefault("true")
-        @Column (name = "active", nullable = false, insertable = false)
+        @Column(name = "active", nullable = false, insertable = false)
         private Boolean active;
 
+        @ColumnDefault("true")
+        @Column(name = "activeI", nullable = false, insertable = false)
+        private Boolean activeI;
 
     }
 

@@ -34,16 +34,6 @@ public class Managment extends AuditableRecord {
     @Column(name = "uuid", nullable = false)
     private UUID uuid;
 
-    @ColumnDefault("false")
-    @Column(name = "active", nullable = false)
-    private Boolean active = false;
-
-    @Column(name = "created", nullable = false)
-    private Instant created;
-
-    @Column(name = "updated", nullable = false)
-    private Instant updated;
-
     @Column(name = "password", nullable = false,length = Integer.MAX_VALUE)
     private String password;
 

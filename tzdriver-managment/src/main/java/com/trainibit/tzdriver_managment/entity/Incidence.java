@@ -1,9 +1,11 @@
 package com.trainibit.tzdriver_managment.entity;
 
+import com.trainibit.tzdriver_managment.response.IncidenceResponse;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -12,7 +14,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "incidences")
-public class Incidence {
+public class Incidence extends IncidenceResponse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +31,6 @@ public class Incidence {
     @JoinColumn(name = "incidence_type_id")
     private IncidenceType incidenceType;
 
-    @Column(name = "created", nullable = false)
-    private Instant created;
+
 
 }

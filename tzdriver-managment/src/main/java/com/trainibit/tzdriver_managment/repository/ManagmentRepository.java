@@ -10,7 +10,18 @@ import java.util.UUID;
 @Repository
 
     public interface ManagmentRepository extends AuditableRepository<Managment, Long> {
-
+    @Override
+    default void borrarByIdActive(Long id) {
+        Managment entity = findById(id).orElseThrow(() -> new RuntimeException("Id not found"));
+        entity.setActive(false);
+        save(entity);
+    }
     Optional<Managment> findByUuid(UUID uuid);
+
+    @Override
+    default Managment actualizarAudit(Managment entity){
+        entity.setUpdatedat(new Timestamp(System.currentTimeMillis()));
+        return save(entity);
+    }
 
 }

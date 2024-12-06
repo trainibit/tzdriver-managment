@@ -9,9 +9,6 @@ import java.util.List;
 
 @Mapper(componentModel ="spring")
 public interface ManagmentMapper {
-
-
-
     ManagmentResponse mapEntityToDto(Managment managment);
     ManagmentRequest requestToEntity(ManagmentRequest managmentRequest);
     List<ManagmentResponse> mapListEntityToListDto(List<Managment> managmentList);
