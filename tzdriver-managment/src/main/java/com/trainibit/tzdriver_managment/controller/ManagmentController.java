@@ -28,24 +28,16 @@ public class ManagmentController {
     @Autowired
     private IncidenceService incidenceService;
 
-
+/*
     @GetMapping
     public ResponseEntity<List<IncidenceResponse>> getAllIncidences() {
         return ResponseEntity.ok(incidenceService.findAll());
-    }
+    }*/
     @GetMapping
-    public ResponseEntity<List<ManagmentResponse>> getAll() {
+    public ResponseEntity<List<ManagmentResponse>> getAllManagment() {
         return ResponseEntity.ok(managmentService.findAll());
     }
 
-    @GetMapping("{id}") //Permite realizar la busqueda por ID
-    public ManagmentResponse obtenerManagmentPorId(@PathVariable UUID id) {
-        return managmentService.findById(id);
-    }
-    @GetMapping("{id}") //Permite realizar la busqueda por ID
-    public IncidenceResponse obtenerIncidencePorId(@PathVariable UUID id) {
-        return incidenceService.findById(id);
-    }
 
     @PostMapping
     public ResponseEntity<IncidenceResponse> createIncidence(@Validated @RequestBody IncidenceRequest incidenceRequest) {

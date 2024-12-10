@@ -20,7 +20,7 @@ import java.util.UUID;
 
     @Override
     default Managment actualizarAudit(Managment entity){
-        entity.setUpdatedat(new Timestamp(System.currentTimeMillis()));
+        entity.setUpdated(new Timestamp(System.currentTimeMillis()));
         return save(entity);
     }
 

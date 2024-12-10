@@ -23,10 +23,21 @@ public class IncidenceServiceImpl implements IncidenceService {
 private IncidenceRepository incidenceRepository;
 
     //Servicio implementado busqueda de todos los registros
-    @Override
+    @Override  //Salida de objeto incide response en lista     //nombreado del metodo
     public List<IncidenceResponse> findAll() {
+        //parece ser una interfaz que extiende de JpaRepository o CrudRepository, ambos de Spring Data,
+        // que proporcionan métodos automáticos para interactuar con la base de datos.
+        //Este es un metodo proporcionado por Spring Data que se usa
+        // para obtener todos los registros de una entidad en la base de datos
         return incidenceMapper.mapListEntityToListDto(incidenceRepository.findAll());
-    }
+    //realizar la conversión entre entidades de la base de datos y objetos DTO
+        //maplistEntityToDto Su propósito es transformar una lista de entidades (List<Incidence>)
+        // en una lista de objetos de tipo DTO (List<IncidenceResponse>).
+    }//Entrada: La entrada para este metodo es la lista de entidades Incidence que se
+    // obtiene de la base de datos con findAll().
+
+    //Salida: La salida es una lista de objetos IncidenceResponse, que son
+    //los objetos que se devolverán al cliente (probablemente a través de una API REST).
 
     @Override
     public IncidenceResponse save(IncidenceRequest incidenceRequest) {
@@ -36,18 +47,15 @@ private IncidenceRepository incidenceRepository;
         // 3. Mapea la entidad Incidence guardada a un IncidenceResponse
         return incidenceMapper.mapEntityToResponse(incidenceRepository.save(incidence));
     }
-    /*  public Usuario save(UsuarioRequest usuarioRequest) {
-        // Crear una nueva instancia de Usuario desde usuarioRequest
-        Usuario usuario = UsuarioMapper2.mapRequestToEntity(usuarioRequest);
-        usuario.setNombrePlaneta(obtenerNombrePlanetaAleatorio());
-        return usuarioRepository.save(usuario);*/
 
     @Override
     public IncidenceResponse update(Long id, IncidenceRequest incidenceRequest) {
         //bUscar la entidad
  Incidence incidence = incidenceRepository.findById(id).orElseThrow(EntityNotFoundException::new);
- //stetear todas sus campos
- incidence.setIncidenceType(incidence.getIncidenceType());
+ //setear todas sus campos
+   incidence.setIncidenceType(incidence.getIncidenceType());
+   incidence.setIncidenceDateStart(incidence.getIncidenceDateStart());
+   incidence.setIncidenceDateFinish(incidence.getIncidenceDateFinish());
 //guaradar los cambios como un entidad y regresa el reponse
         return incidenceMapper.mapEntityToResponse(incidenceRepository.save(incidence));
     }
@@ -60,13 +68,9 @@ private IncidenceRepository incidenceRepository;
 
     @Override
     public IncidenceResponse deleteById(Long id) {
-        if (incidenceRepository.existsById(id)) {
-            incidenceRepository.borrarByIdActive(id);
-        } else {
-            throw new EntityNotFoundException("Usuario con id" + id + " no encontrado");
-        }
         return null;
     }
+
 
 }
 

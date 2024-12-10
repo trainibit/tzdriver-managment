@@ -5,7 +5,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 @NoRepositoryBean
 public interface AuditableRepository2<T, Id> extends JpaRepository<T, Id> {
-    void borrarByIdActive(Id id);
+    void borrarByIdActiveInci(Id id);
 
-    T actualizarAudit(T entity);
+    T actualizarInci(T entity);
 }

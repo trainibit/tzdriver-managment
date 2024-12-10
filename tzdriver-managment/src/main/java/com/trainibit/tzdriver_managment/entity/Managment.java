@@ -1,15 +1,15 @@
 package com.trainibit.tzdriver_managment.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
-import org.springframework.data.domain.Auditable;
 
-import java.time.Instant;
+import java.sql.Timestamp;
 import java.util.UUID;
 
-
+@Data
 @Getter
 @Setter
 @Entity
@@ -39,5 +39,16 @@ public class Managment extends AuditableRecord {
 
     @Column (name = "user", nullable = false, length = Integer.MAX_VALUE)
     private String user;
+
+    @Column(name = "created", nullable = false, insertable = false, updatable = false)
+    private Timestamp created;
+
+    @Column(name = "updated", nullable = false, insertable = false)
+    private Timestamp updated;
+
+    @ColumnDefault("true")
+    @Column(name = "active", nullable = false, insertable = false)
+    private Boolean active;
+
 
 }
