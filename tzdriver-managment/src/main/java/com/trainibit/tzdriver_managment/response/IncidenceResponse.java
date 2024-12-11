@@ -8,10 +8,10 @@ import java.util.UUID;
 
 @Data
 public class IncidenceResponse {
-    private String nameIncidence;
     private LocalDate incidenceDateStart;
     private LocalDate incidenceDateFinish;
     private IncidenceType incidenceType;
     private UUID uuid;
+    private UUID driverUuid;
 
 }

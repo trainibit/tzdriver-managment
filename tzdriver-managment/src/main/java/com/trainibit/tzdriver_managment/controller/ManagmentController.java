@@ -3,6 +3,7 @@ package com.trainibit.tzdriver_managment.controller;
 import com.trainibit.tzdriver_managment.entity.Incidence;
 import com.trainibit.tzdriver_managment.entity.Managment;
 import com.trainibit.tzdriver_managment.request.IncidenceRequest;
+import com.trainibit.tzdriver_managment.request.ManagmentRequest;
 import com.trainibit.tzdriver_managment.response.IncidenceResponse;
 import com.trainibit.tzdriver_managment.response.ManagmentResponse;
 import com.trainibit.tzdriver_managment.service.IncidenceService;
@@ -23,41 +24,37 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/managment")
 public class ManagmentController {
+
+
     @Autowired
     private ManagmentService managmentService;
-    @Autowired
-    private IncidenceService incidenceService;
+//CRUDE DE INCIDENCIAS
 
-/*
     @GetMapping
-    public ResponseEntity<List<IncidenceResponse>> getAllIncidences() {
-        return ResponseEntity.ok(incidenceService.findAll());
-    }*/
-    @GetMapping
-    public ResponseEntity<List<ManagmentResponse>> getAllManagment() {
+    public ResponseEntity<List<ManagmentResponse>> getAllManager() {
         return ResponseEntity.ok(managmentService.findAll());
     }
 
-
     @PostMapping
-    public ResponseEntity<IncidenceResponse> createIncidence(@Validated @RequestBody IncidenceRequest incidenceRequest) {
-        IncidenceResponse nuevaIncidencia = incidenceService.save(incidenceRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(nuevaIncidencia);
+    public ResponseEntity<ManagmentResponse> createManager(@Validated @RequestBody ManagmentRequest managmentRequest) {
+        ManagmentResponse managerNuevo = managmentService.save(managmentRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(managerNuevo);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<IncidenceResponse> updateUsuario(@PathVariable Long id, @RequestBody IncidenceRequest incidenceRequest) {
+    public ResponseEntity<ManagmentResponse> updateManager(@PathVariable Long id, @RequestBody ManagmentRequest managmentRequest) {
         try {
-            IncidenceResponse incidenceActualizado = incidenceService.update(id,incidenceRequest);
-            return ResponseEntity.ok(incidenceActualizado);
+            ManagmentResponse managerActualizado = managmentService.update(id,managmentRequest);
+            return ResponseEntity.ok(managerActualizado);
 
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 }
 @DeleteMapping("/{id}")
-    public ResponseEntity<IncidenceResponse> deleteIncidence(@PathVariable Long id) {
-        IncidenceResponse incidenceBorrado = incidenceService.deleteById(id);
-        return ResponseEntity.ok(incidenceBorrado);
+    public ResponseEntity<ManagmentResponse> deleteManager(@PathVariable Long id) {
+        ManagmentResponse managerBorrado = managmentService.deleteById(id);
+        return ResponseEntity.ok(managerBorrado);
 }
+
 }

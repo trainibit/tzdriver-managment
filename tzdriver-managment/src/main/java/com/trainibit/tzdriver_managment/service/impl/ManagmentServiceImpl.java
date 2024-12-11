@@ -1,5 +1,6 @@
 package com.trainibit.tzdriver_managment.service.impl;
 
+import com.trainibit.tzdriver_managment.entity.Incidence;
 import com.trainibit.tzdriver_managment.entity.Managment;
 import com.trainibit.tzdriver_managment.mapper.ManagmentMapper;
 import com.trainibit.tzdriver_managment.repository.ManagmentRepository;
@@ -33,25 +34,38 @@ private ManagmentMapper managmentMapper;
                 orElseThrow(EntityNotFoundException::new));
     }
     @Override
-    public Managment deleteById(Long id) {
+    public ManagmentResponse deleteById(Long id) {
         if (managmentRepository.existsById(id)) {
             managmentRepository.borrarByIdActive(id);
         } else {
-            throw new EntityNotFoundException("Usuario con id" + id + " no encontrado");
+            throw new EntityNotFoundException("Manager con id" + id + " no encontrado");
         }
         return null;
     }
 
     @Override
-    public Managment save(ManagmentRequest managmentRequest) {
-        return null;
+    public ManagmentResponse save(ManagmentRequest managmentRequest) {
+        //Objeto request a entidad
+        Managment managment = managmentMapper.requestToEntity(managmentRequest);
+        //Objeto entidad a objeto reponse
+        // 3. Mapea la entidad Incidence guardada a un IncidenceResponse
+        return managmentMapper.mapEntityToDto(managmentRepository.save(managment));
     }
 
     @Override
-    public Managment update(Long id, ManagmentRequest managmentRequest) {
+    public ManagmentResponse update(Long id, ManagmentRequest managmentRequest) {
+        //bUscar la entidad
+        Managment managment = managmentRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        //setear todas sus campos
+        managment.setName(managmentRequest.getName());
+        managment.setLastName(managmentRequest.getLast_name());
+        managment.setEmail(managmentRequest.getEmail());
+        managment.setPassword(managmentRequest.getPassword());
+        managment.setUser(managmentRequest.getUser());
+        managment.setPhone(managmentRequest.getPhone());
 
-
-        return null;
+//guaradar los cambios como un entidad y regresa el reponse
+        return managmentMapper.mapEntityToDto(managmentRepository.save(managment));
     }
 
 

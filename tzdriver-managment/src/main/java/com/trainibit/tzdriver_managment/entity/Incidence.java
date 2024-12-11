@@ -2,12 +2,9 @@ package com.trainibit.tzdriver_managment.entity;
 
 import com.trainibit.tzdriver_managment.response.IncidenceResponse;
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
-
-
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -30,12 +27,15 @@ public class Incidence extends IncidenceResponse {
 
     @Column(name = "incidence_date_finish", nullable = false)
     private LocalDate incidenceDateFinish;
-
+    //Notaciopn para el guardado en cascada @OneToOne(cascade = CascadeType.ALL)
     @ManyToOne//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     //columna relacionada en la base de datos
     @JoinColumn(name = "incidence_type_id")
     private IncidenceType incidenceType;
 
+
+    @Column (name= "driver_uuid", nullable = false)
+    private UUID driverUuid;
 
 
     @Column(name = "created", nullable = false, insertable = false, updatable = false)
