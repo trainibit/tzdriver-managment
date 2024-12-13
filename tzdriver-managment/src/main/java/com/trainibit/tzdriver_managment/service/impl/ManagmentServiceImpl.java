@@ -47,6 +47,7 @@ private ManagmentMapper managmentMapper;
     public ManagmentResponse save(ManagmentRequest managmentRequest) {
         //Objeto request a entidad
         Managment managment = managmentMapper.requestToEntity(managmentRequest);
+        managment.setUuid(UUID.randomUUID());
         //Objeto entidad a objeto reponse
         // 3. Mapea la entidad Incidence guardada a un IncidenceResponse
         return managmentMapper.mapEntityToDto(managmentRepository.save(managment));
@@ -58,7 +59,7 @@ private ManagmentMapper managmentMapper;
         Managment managment = managmentRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         //setear todas sus campos
         managment.setName(managmentRequest.getName());
-        managment.setLastName(managmentRequest.getLast_name());
+        managment.setLastname(managmentRequest.getLastname());
         managment.setEmail(managmentRequest.getEmail());
         managment.setPassword(managmentRequest.getPassword());
         managment.setUser(managmentRequest.getUser());

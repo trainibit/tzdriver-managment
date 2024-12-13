@@ -6,7 +6,7 @@ import java.util.UUID;
 @Data
 public class ManagmentResponse {
     private String name;
-    private String last_Name;
+    private String lastname;
     private String email;
     private String phone;
     private UUID uuid;

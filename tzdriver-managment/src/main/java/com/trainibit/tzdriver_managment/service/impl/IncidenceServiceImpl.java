@@ -1,5 +1,6 @@
 package com.trainibit.tzdriver_managment.service.impl;
 
+import com.trainibit.tzdriver_managment.entity.AuditableRecord;
 import com.trainibit.tzdriver_managment.entity.Incidence;
 import com.trainibit.tzdriver_managment.entity.IncidenceType;
 import com.trainibit.tzdriver_managment.mapper.IncidenceMapper;
@@ -13,10 +14,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,6 +28,8 @@ public class IncidenceServiceImpl implements IncidenceService {
     private IncidenceRepository incidenceRepository;
     @Autowired
     private IncidenceTypeRepository incidenceTypeRepository;
+    @Autowired
+    private RestTemplate restTemplate;
 
     //Servicio implementado busqueda de todos los registros
     @Override  //Salida de objeto incide response en lista     //nombreado del metodo
@@ -70,6 +71,8 @@ public class IncidenceServiceImpl implements IncidenceService {
 //guaradar los cambios como un entidad y regresa el reponse
         return incidenceMapper.mapEntityToResponse(incidenceRepository.save(incidence));
     }
+
+
 
     @Override
     public IncidenceResponse findById(UUID uuid) {

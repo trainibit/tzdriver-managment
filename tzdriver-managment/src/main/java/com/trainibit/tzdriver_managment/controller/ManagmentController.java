@@ -8,6 +8,10 @@ import com.trainibit.tzdriver_managment.response.IncidenceResponse;
 import com.trainibit.tzdriver_managment.response.ManagmentResponse;
 import com.trainibit.tzdriver_managment.service.IncidenceService;
 import com.trainibit.tzdriver_managment.service.ManagmentService;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,8 +20,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Key;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Function;
 
 @ComponentScan
 @Validated
@@ -30,7 +37,11 @@ public class ManagmentController {
     private ManagmentService managmentService;
 //CRUDE DE INCIDENCIAS
 
-    @GetMapping
+    @GetMapping("/{uuid}")
+public ResponseEntity<ManagmentResponse> getByUuid(@PathVariable UUID uuid){
+    return ResponseEntity.ok(managmentService.findById(uuid));
+}
+@GetMapping
     public ResponseEntity<List<ManagmentResponse>> getAllManager() {
         return ResponseEntity.ok(managmentService.findAll());
     }
@@ -56,5 +67,6 @@ public class ManagmentController {
         ManagmentResponse managerBorrado = managmentService.deleteById(id);
         return ResponseEntity.ok(managerBorrado);
 }
+
 
 }

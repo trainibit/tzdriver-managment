@@ -23,7 +23,7 @@ public class Managment extends AuditableRecord {
     private String name;
 
     @Column(name = "last_name", nullable = false, length = Integer.MAX_VALUE)
-    private String lastName;
+    private String lastname;
 
     @Column(name = "phone", nullable = false, length = 10)
     private String phone;
@@ -40,15 +40,7 @@ public class Managment extends AuditableRecord {
     @Column (name = "user", nullable = false, length = Integer.MAX_VALUE)
     private String user;
 
-    @Column(name = "created", nullable = false, insertable = false, updatable = false)
-    private Timestamp created;
 
-    @Column(name = "updated", nullable = false, insertable = false)
-    private Timestamp updated;
-
-    @ColumnDefault("true")
-    @Column(name = "active", nullable = false, insertable = false)
-    private Boolean active;
 
 
 }

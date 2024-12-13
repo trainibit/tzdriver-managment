@@ -1,8 +1,6 @@
 package com.trainibit.tzdriver_managment.request;
 
-import com.trainibit.tzdriver_managment.entity.IncidenceType;
 import lombok.Data;
-
 import java.time.LocalDate;
 import java.util.UUID;
 

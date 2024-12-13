@@ -13,7 +13,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "incidences")
-public class Incidence extends IncidenceResponse {
+public class Incidence extends AuditableRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +28,10 @@ public class Incidence extends IncidenceResponse {
     @Column(name = "incidence_date_finish", nullable = false)
     private LocalDate incidenceDateFinish;
     //Notaciopn para el guardado en cascada @OneToOne(cascade = CascadeType.ALL)
-    @ManyToOne//(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+    @ManyToOne(fetch = FetchType.EAGER)
     //columna relacionada en la base de datos
+
     @JoinColumn(name = "incidence_type_id")
     private IncidenceType incidenceType;
 
@@ -37,16 +39,6 @@ public class Incidence extends IncidenceResponse {
     @Column (name= "driver_uuid", nullable = false)
     private UUID driverUuid;
 
-
-    @Column(name = "created", nullable = false, insertable = false, updatable = false)
-    private Timestamp created;
-
-    @Column(name = "updated", nullable = false, insertable = false)
-    private Timestamp updated;
-
-    @ColumnDefault("true")
-    @Column(name = "active", nullable = false, insertable = false)
-    private Boolean active;
 
 
 

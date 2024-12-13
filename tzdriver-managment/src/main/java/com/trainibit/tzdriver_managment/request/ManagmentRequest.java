@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class ManagmentRequest {
     private String name;
-    private String last_name;
+    private String lastname;
     private String email;
     private String phone;
     private String user;
